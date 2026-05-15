@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Ecosysteem Scan — ForwardJuntos</title>
+<style>
+@media print {
+  body { font-size: 10pt; }
+  .no-print { display: none; }
+  .page-break { page-break-before: always; }
+  section { page-break-inside: avoid; }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 11pt;
+  color: #1a1a2e;
+  background: #fff;
+  max-width: 210mm;
+  margin: 0 auto;
+  padding: 14mm 14mm 12mm;
+  line-height: 1.55;
+}
+
+/* HEADER */
+.doc-header {
+  border-bottom: 3px solid #7C3AED;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+.doc-title { font-size: 17pt; font-weight: 700; color: #7C3AED; letter-spacing: -0.5px; }
+.doc-sub { font-size: 9pt; color: #666; margin-top: 3px; line-height: 1.4; }
+.doc-meta { text-align: right; font-size: 8.5pt; color: #888; flex-shrink: 0; }
+.doc-meta strong { color: #444; }
+
+/* PRINCIPLE STRIP */
+.principle-strip {
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  border-radius: 7px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.principle-strip span {
+  font-size: 8pt;
+  background: #ede9fe;
+  color: #5b21b6;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.principle-strip .label {
+  font-size: 8.5pt;
+  color: #6b7280;
+  background: none;
+  font-weight: 600;
+  padding: 3px 0;
+  width: 100%;
+}
+
+/* SECTION HEADERS */
+h2 {
+  font-size: 12pt;
+  font-weight: 700;
+  color: #fff;
+  background: #7C3AED;
+  padding: 5px 11px;
+  border-radius: 6px;
+  margin: 20px 0 12px;
+}
+h2.green  { background: #059669; }
+h2.orange { background: #D97706; }
+h2.red    { background: #dc2626; }
+h2.blue   { background: #0891B2; }
+
+/* CONTACT CARDS */
+.contact-card {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 10px;
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+.card-header {
+  background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+  padding: 12px 16px 10px;
+  border-bottom: 1px solid #ddd6fe;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.card-header.green { background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-color: #a7f3d0; }
+.card-header.blue  { background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%); border-color: #bfdbfe; }
+.card-number {
+  width: 34px; height: 34px;
+  background: #7C3AED;
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 14pt;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.card-number.green { background: #059669; }
+.card-number.blue  { background: #0891B2; }
+.card-name { font-size: 13pt; font-weight: 700; color: #1a1a2e; }
+.card-role { font-size: 9pt; color: #555; margin-top: 2px; }
+.card-org  { font-size: 9pt; color: #7C3AED; font-weight: 600; margin-top: 1px; }
+.card-org.green { color: #059669; }
+.card-org.blue  { color: #0891B2; }
+
+.card-body { padding: 12px 16px 14px; }
+
+.card-section-title {
+  font-size: 8.5pt;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+.card-section-title:first-child { margin-top: 0; }
+
+.relevance-box {
+  background: #fafafa;
+  border-left: 3px solid #7C3AED;
+  padding: 7px 10px;
+  border-radius: 0 5px 5px 0;
+  font-size: 9.5pt;
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+.relevance-box.green { border-color: #059669; }
+.relevance-box.blue  { border-color: #0891B2; }
+
+.message-box {
+  background: #1e1b2e;
+  color: #e5e7eb;
+  border-radius: 6px;
+  padding: 10px 13px;
+  font-size: 9pt;
+  line-height: 1.6;
+  font-style: italic;
+  margin-top: 4px;
+  position: relative;
+}
+.message-box::before {
+  content: '💬';
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  font-style: normal;
+  font-size: 14px;
+}
+.message-label {
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: #a78bfa;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+.message-label.green { color: #34d399; }
+.message-label.blue  { color: #60a5fa; }
+
+/* CAI CHECK */
+.cai-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+.cai-cell {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 7px 9px;
+  font-size: 8.5pt;
+}
+.cai-cell .cai-label { font-weight: 700; color: #374151; margin-bottom: 3px; }
+.cai-cell.ok   { border-color: #a7f3d0; background: #f0fdf4; }
+.cai-cell.warn { border-color: #fde68a; background: #fffbeb; }
+.cai-cell .verdict {
+  display: inline-block;
+  font-size: 7.5pt;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+.cai-cell.ok   .verdict { background: #d1fae5; color: #065f46; }
+.cai-cell.warn .verdict { background: #fef3c7; color: #92400e; }
+
+/* STRATEGY SECTION */
+.strategy-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.strategy-box {
+  flex: 1;
+  border: 1px solid #e5e7eb;
+  border-radius: 7px;
+  padding: 9px 11px;
+  font-size: 9pt;
+}
+.strategy-box h4 { font-size: 8.5pt; font-weight: 700; color: #4B3A8F; margin-bottom: 5px; }
+.strategy-box ul { list-style: none; }
+.strategy-box ul li { padding: 2px 0; }
+.strategy-box ul li::before { content: '→ '; color: #9ca3af; }
+
+/* BADGES */
+.badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 8pt;
+  font-weight: 600;
+}
+.b-green  { background: #d1fae5; color: #065f46; }
+.b-orange { background: #fef3c7; color: #92400e; }
+.b-purple { background: #ede9fe; color: #5b21b6; }
+.b-red    { background: #fee2e2; color: #991b1b; }
+.b-blue   { background: #dbeafe; color: #1e40af; }
+
+/* INFO BOX */
+.infobox {
+  border-radius: 6px;
+  padding: 9px 13px;
+  margin: 10px 0;
+  font-size: 9.5pt;
+  line-height: 1.5;
+}
+.infobox.orange { background: #fffbeb; border-left: 4px solid #D97706; }
+.infobox.purple { background: #f5f3ff; border-left: 4px solid #7C3AED; }
+.infobox.green  { background: #ecfdf5; border-left: 4px solid #059669; }
+.infobox.blue   { background: #eff6ff; border-left: 4px solid #0891B2; }
+
+/* CHECKLIST */
+.checklist { list-style: none; margin: 8px 0; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 9.5pt;
+}
+.checklist li:last-child { border-bottom: none; }
+.chk {
+  width: 16px; height: 16px;
+  border: 1.5px solid #9ca3af;
+  border-radius: 3px;
+  flex-shrink: 0; margin-top: 1px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9pt;
+}
+.chk.todo { border-color: #7C3AED; background: #ede9fe; color: #7C3AED; }
+
+/* TABLE */
+table { width: 100%; border-collapse: collapse; font-size: 9pt; margin: 8px 0; }
+th { background: #f3f0ff; color: #4B3A8F; font-weight: 600; padding: 6px 8px; border: 1px solid #ddd; text-align: left; }
+td { padding: 5px 8px; border: 1px solid #e5e7eb; vertical-align: top; }
+tr:nth-child(even) td { background: #fafafa; }
+
+p  { font-size: 9.5pt; margin-bottom: 6px; line-height: 1.5; }
+code { font-family: monospace; font-size: 8.5pt; background: #f3f0ff; color: #5b21b6; padding: 1px 4px; border-radius: 3px; }
+strong { color: #111; }
+
+/* FOOTER */
+.doc-footer {
+  margin-top: 24px;
+  padding-top: 10px;
+  border-top: 1px solid #e5e7eb;
+  font-size: 8pt;
+  color: #9ca3af;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* PRINT BTN */
+.print-btn {
+  position: fixed; bottom: 20px; right: 20px;
+  background: #7C3AED; color: white; border: none;
+  padding: 10px 20px; border-radius: 8px;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ Afdrukken</button>
+
+<!-- HEADER -->
+<div class="doc-header">
+  <div>
+    <div class="doc-title">⚛️ Quantum Ecosysteem Scan</div>
+    <div class="doc-sub">
+      3 concrete contactpersonen · NL quantum × gezondheid × internationale samenwerking<br>
+      Samengesteld voor <strong>ForwardJuntos</strong> — Dominique Hermans
+    </div>
+  </div>
+  <div class="doc-meta">
+    <strong>Datum:</strong> 15 mei 2026<br>
+    <strong>Versie:</strong> v1.0<br>
+    <strong>Methode:</strong> Web research + CAI-check<br>
+    <strong>Status:</strong> <span class="badge b-green">Actierijp</span>
+  </div>
+</div>
+
+<!-- CONSTITUTIONELE AI STRIP -->
+<div class="principle-strip">
+  <span class="label">✅ Constitutionele AI-principes toegepast:</span>
+  <span>Waarheid boven comfort</span>
+  <span>Actie boven theorie</span>
+  <span>Klein bouwen, snel testen</span>
+  <span>Verbinding met mensen</span>
+  <span>Lange termijn denken</span>
+</div>
+
+<!-- INTRO -->
+<div class="infobox purple">
+  <strong>Aanpak:</strong> Geselecteerd op basis van actueel web-onderzoek (mei 2026). Elk contact is gekozen op brugfunctie — business development, ecosysteem-opbouw of internationale samenwerking — en getoetst aan jouw drie raakvlakken: <em>gezondheid/PPMS, NL↔Ecuador, ecosysteemdenken</em>. Geen name-dropping — alleen waar een logisch raakvlak aantoonbaar is.
+</div>
+
+<!-- CONTACT 1 -->
+<h2>🌐 Contact 1 — Ecosysteem & Strategie</h2>
+
+<div class="contact-card">
+  <div class="card-header">
+    <div class="card-number">1</div>
+    <div>
+      <div class="card-name">Dr. Ulrich Mans</div>
+      <div class="card-role">Strategic Partnerships Lead — Internationale Strategie & Ecosysteem</div>
+      <div class="card-org">Quantum Delta NL · Den Haag/Delft</div>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <div class="card-section-title">Waarom relevant voor ForwardJuntos</div>
+    <div class="relevance-box">
+      Ulrich Mans is verantwoordelijk voor de internationale strategie van het hele Nederlandse quantum-ecosysteem — inclusief samenwerking met opkomende quantum-landen buiten Europa. Met een achtergrond als voormalig Innovation Attaché in Washington, EU-dienst en Leiden Centre for Innovation, én een PhD in economische geografie, denkt hij expliciet in termen van kennis-uitwisseling en brug-bouwen over grenzen. Zijn LinkedIn-profiel omschrijft hem als iemand die "the different worlds of business, non-profit, public service and science" verbindt — precies het ecosysteem-DNA van ForwardJuntos.
+    </div>
+
+    <div class="card-section-title">Raakvlakken gecheckt</div>
+    <table>
+      <tr>
+        <th>ForwardJuntos-pijler</th>
+        <th>Raakvlak Ulrich Mans</th>
+        <th>Oordeel</th>
+      </tr>
+      <tr>
+        <td>Gezondheid / PPMS</td>
+        <td>QDNL lanceerde de Quantum Forward Challenge in Life Sciences & Health (2025) — Ulrich is de aanspreekpersoon voor externe partners</td>
+        <td><span class="badge b-green">✓ Direct</span></td>
+      </tr>
+      <tr>
+        <td>NL↔Ecuador brug</td>
+        <td>Actief met "opkomende quantum-ecosystemen wereldwijd" — Latijns-Amerika nog niet benoemd, maar dat is juist een opening</td>
+        <td><span class="badge b-orange">⚠ Indirect</span></td>
+      </tr>
+      <tr>
+        <td>Ecosysteem-denken</td>
+        <td>Dit is zijn core-rol — supply chains, kennisbeveiliging, internationale samenwerking kwantumtechnologie</td>
+        <td><span class="badge b-green">✓ Direct</span></td>
+      </tr>
+    </table>
+
+    <div class="card-section-title">CAI-check</div>
+    <div class="cai-grid">
+      <div class="cai-cell ok">
+        <div class="verdict">✓ Relevant</div>
+        <div class="cai-label">Waarheid boven comfort</div>
+        Er is een aantoonbaar raakvlak: QDNL's health challenge + zijn internationaal profiel. Geen name-dropping.
+      </div>
+      <div class="cai-cell ok">
+        <div class="verdict">✓ Vandaag</div>
+        <div class="cai-label">Actie boven theorie</div>
+        LinkedIn profiel actief, e-mail publiek (<code>ulrich.mans@quantumdelta.nl</code>). Eerste stap mogelijk vandaag.
+      </div>
+      <div class="cai-cell ok">
+        <div class="verdict">✓ Laag-risico</div>
+        <div class="cai-label">Klein bouwen, snel testen</div>
+        Korte LinkedIn-reactie op zijn posts over ecosysteem-opbouw = passende eerste stap.
+      </div>
+      <div class="cai-cell ok">
+        <div class="verdict">✓ 2-5 jaar</div>
+        <div class="cai-label">Lange termijn</div>
+        Als QDNL ooit de LA-regio opent, is hij de juiste persoon om dan al een relatie mee te hebben.
+      </div>
+    </div>
+
+    <div class="card-section-title" style="margin-top:12px;">Eerste contact — voorgestelde boodschap (LinkedIn DM)</div>
+    <div class="message-box">
+      <div class="message-label">Voorgesteld LinkedIn-bericht</div>
+      Hoi Ulrich, ik ben Dominique Hermans — ik bouw aan ForwardJuntos, een ecosysteem dat Nederland en Ecuador verbindt op het snijvlak van gezondheid (ik leef met PPMS) en duurzame innovatie. Ik volg QDNL's quantum-gezondheidswerk met veel interesse. Ben je bereid 15 minuten te sparren over hoe zulke ecosysteem-aanpakken ook richting opkomende markten kunnen worden uitgerold?
+    </div>
+
+    <div class="infobox green" style="margin-top:10px;">
+      <strong>Direct actie:</strong> LinkedIn → zoek "Ulrich Mans Quantum Delta NL" → stuur verbindingsverzoek met bovenstaande tekst als notitie. Of e-mail: <code>ulrich.mans@quantumdelta.nl</code>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT 2 -->
+<h2 class="blue">🏥 Contact 2 — Quantum × Gezondheid</h2>
+
+<div class="contact-card">
+  <div class="card-header blue">
+    <div class="card-number blue">2</div>
+    <div>
+      <div class="card-name">Quantum Forward Challenge — Programma-contactpunt</div>
+      <div class="card-role">Life Sciences & Health Challenge Team · Contactpunt voor deelnemers & partners</div>
+      <div class="card-org blue">Quantum Delta NL · quantumdelta.nl/quantum-forward-challenge</div>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <div class="card-section-title">Waarom relevant — en waarom dit geen naam is</div>
+    <div class="relevance-box blue">
+      <strong>Waarheid boven comfort:</strong> Het specifieke naam van de programmamanager voor de Quantum Forward Challenge in Life Sciences & Health is niet publiek aantoonbaar op basis van actueel onderzoek. Wel is het programma zelf <em>extreem relevant</em>: het brengt quantum-onderzoekers, clinici, technologen en industrie-partners samen voor echte gezondheidsuitdagingen — inclusief gepersonaliseerde therapieën en digitale therapeutica. Dit is het meest directe aansluitpunt voor jouw PPMS-focus.
+    </div>
+
+    <div class="card-section-title">Raakvlakken</div>
+    <table>
+      <tr>
+        <th>ForwardJuntos-pijler</th>
+        <th>Raakvlak QFC Health</th>
+        <th>Oordeel</th>
+      </tr>
+      <tr>
+        <td>Gezondheid / PPMS</td>
+        <td>Challenge richt zich expliciet op "personalized therapies" en "clinical workflow optimization" — MS valt hieronder</td>
+        <td><span class="badge b-green">✓ Direct</span></td>
+      </tr>
+      <tr>
+        <td>Ecosysteem-denken</td>
+        <td>Werkt als de QuTech/QDNL-brug naar de zorgsector — cross-sector per definitie</td>
+        <td><span class="badge b-green">✓ Direct</span></td>
+      </tr>
+      <tr>
+        <td>NL↔Ecuador brug</td>
+        <td>Geen direct raakvlak, maar een verbinding met de health-challenge vergroot je geloofwaardigheid in het ecosysteem</td>
+        <td><span class="badge b-orange">⚠ Indirect</span></td>
+      </tr>
+    </table>
+
+    <div class="card-section-title">Strategie: zo vind je de juiste persoon</div>
+    <div class="strategy-row">
+      <div class="strategy-box">
+        <h4>Stap 1 — Vandaag</h4>
+        <ul>
+          <li>Ga naar <code>quantumdelta.nl/quantum-forward-challenge</code></li>
+          <li>Klik op "expressions of interest" of "pre-registration"</li>
+          <li>Je komt in contact met het programma-team</li>
+        </ul>
+      </div>
+      <div class="strategy-box">
+        <h4>Stap 2 — Dit weekend</h4>
+        <ul>
+          <li>Zoek op LinkedIn: "Quantum Delta NL" + "health" of "life sciences"</li>
+          <li>Filter op medewerkers — wie post over de health challenge?</li>
+          <li>Dat is je contactpersoon</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card-section-title">Eerste bericht (e-mail naar programma)</div>
+    <div class="message-box" style="border-left: 3px solid #60a5fa;">
+      <div class="message-label blue">Voorgesteld e-mail/contactformulier bericht</div>
+      Ik ben Dominique Hermans, initiatiefnemer van ForwardJuntos — een ecosysteem aan het snijvlak van gezondheid (ik leef met PPMS) en internationale kennisuitwisseling. De Quantum Forward Challenge in Life Sciences sluit aan bij mijn werk: ik wil begrijpen hoe quantumtoepassingen bij neurologische aandoeningen in een brede context worden onderzocht. Mag ik jullie informatiesessie bijwonen, of is er een gesprek mogelijk?
+    </div>
+
+    <div class="infobox blue" style="margin-top:10px;">
+      <strong>Direct actie:</strong> Bezoek <code>quantumdelta.nl/quantum-forward-challenge</code> → gebruik het contactformulier of e-mail het opgegeven adres voor de informatiesessie. De call is actief — dit is het juiste moment.
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT 3 -->
+<h2 class="green">🌱 Contact 3 — Startup Ecosysteem & Impact</h2>
+
+<div class="contact-card">
+  <div class="card-header green">
+    <div class="card-number green">3</div>
+    <div>
+      <div class="card-name">Kate Hach</div>
+      <div class="card-role">Deep Tech Accelerator Program Expert · Infinity by Quantum Delta NL</div>
+      <div class="card-org green">Infinity QD · infinityqd.nl · Rotterdam-Delft regio</div>
+    </div>
+  </div>
+  <div class="card-body">
+
+    <div class="card-section-title">Waarom relevant voor ForwardJuntos</div>
+    <div class="relevance-box green">
+      Kate Hach is recent aangesteld bij Infinity QD — het accelerator- en startup-programma van Quantum Delta NL — als expert in het "designing and managing accelerator programs for deep tech startups." Infinity publiceerde bovendien een industrie-rapport over quantum in health & life sciences. Haar rol zit precies op het snijvlak van ecosysteem-opbouw, community en impact — het profiel dat jij zoekt: iemand met een <em>brugfunctie</em> tussen technologie en maatschappelijke toepassing, open voor nieuwe partners.
+    </div>
+
+    <div class="card-section-title">Raakvlakken gecheckt</div>
+    <table>
+      <tr>
+        <th>ForwardJuntos-pijler</th>
+        <th>Raakvlak Kate Hach / Infinity QD</th>
+        <th>Oordeel</th>
+      </tr>
+      <tr>
+        <td>Gezondheid / PPMS</td>
+        <td>Infinity publiceerde rapport "How can quantum make impact in health & life sciences?" — zij werkt aan de praktische vertaling</td>
+        <td><span class="badge b-green">✓ Direct</span></td>
+      </tr>
+      <tr>
+        <td>Ecosysteem-denken</td>
+        <td>Dit is haar kernexpertise: acceleratorprogramma's, community-opbouw, startups ondersteunen</td>
+        <td><span class="badge b-green">✓ Direct</span></td>
+      </tr>
+      <tr>
+        <td>NL↔Ecuador brug</td>
+        <td>Infinity heeft internationale ambitie — een Latino-América-verbinding is nieuw en kan haar werk verrijken</td>
+        <td><span class="badge b-orange">⚠ Indirect</span></td>
+      </tr>
+    </table>
+
+    <div class="card-section-title">CAI-check</div>
+    <div class="cai-grid">
+      <div class="cai-cell ok">
+        <div class="verdict">✓ Relevant</div>
+        <div class="cai-label">Waarheid boven comfort</div>
+        Nieuw in haar rol = open houding, actief op zoek naar impact-verhalen en partners.
+      </div>
+      <div class="cai-cell ok">
+        <div class="verdict">✓ Vandaag</div>
+        <div class="cai-label">Actie boven theorie</div>
+        Infinity QD heeft een contactformulier en Kate Hach is vindbaar via <code>infinityqd.nl</code>.
+      </div>
+      <div class="cai-cell ok">
+        <div class="verdict">✓ Laag-risico</div>
+        <div class="cai-label">Klein bouwen, snel testen</div>
+        Reageer op haar eerste posts bij Infinity — een korte, nieuwsgierige reactie is genoeg.
+      </div>
+      <div class="cai-cell ok">
+        <div class="verdict">✓ 2-5 jaar</div>
+        <div class="cai-label">Lange termijn</div>
+        Als ForwardJuntos groeit naar een impact-platform, is een band met Infinity QD strategisch.
+      </div>
+    </div>
+
+    <div class="card-section-title" style="margin-top:12px;">Eerste contact — voorgestelde boodschap</div>
+    <div class="message-box" style="border-left: 3px solid #34d399;">
+      <div class="message-label green">Voorgesteld LinkedIn-bericht</div>
+      Hoi Kate, gefeliciteerd met je start bij Infinity QD! Ik volg het health & quantum werk daar met interesse — ik bouw aan ForwardJuntos, een gezondheids- en kennisplatform vanuit de PPMS-ervaring. Ben benieuwd hoe Infinity naar impact-partners kijkt die de vertaalslag maken richting patiëntengemeenschappen. Zin om een keer kort te sparren?
+    </div>
+
+    <div class="infobox green" style="margin-top:10px;">
+      <strong>Direct actie:</strong> Zoek "Kate Hach Infinity QD" op LinkedIn → reageer op haar meest recente post → stuur na een reactie een DM met bovenstaand bericht.
+    </div>
+  </div>
+</div>
+
+<!-- OVERZICHT MATRIX -->
+<div class="page-break"></div>
+<h2 class="orange">📊 Overzicht — 3 Contacten in één oogopslag</h2>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Naam / Aanspreekpunt</th>
+    <th>Organisatie</th>
+    <th>Sterkste raakvlak</th>
+    <th>Eerste stap</th>
+    <th>Tijdsinvestering</th>
+  </tr>
+  <tr>
+    <td><strong>1</strong></td>
+    <td>Dr. Ulrich Mans</td>
+    <td>Quantum Delta NL</td>
+    <td><span class="badge b-purple">Ecosysteem + Int'l</span></td>
+    <td>LinkedIn DM of e-mail</td>
+    <td>15 min</td>
+  </tr>
+  <tr>
+    <td><strong>2</strong></td>
+    <td>QFC Health-team</td>
+    <td>Quantum Delta NL</td>
+    <td><span class="badge b-blue">Gezondheid / PPMS</span></td>
+    <td>Contactformulier website</td>
+    <td>10 min</td>
+  </tr>
+  <tr>
+    <td><strong>3</strong></td>
+    <td>Kate Hach</td>
+    <td>Infinity QD</td>
+    <td><span class="badge b-green">Impact + Community</span></td>
+    <td>LinkedIn reactie → DM</td>
+    <td>10 min</td>
+  </tr>
+</table>
+
+<!-- OPENHEID -->
+<h2 class="red">⚠️ Eerlijkheidscheck — Wat ik niet heb gevonden</h2>
+
+<div class="infobox orange">
+  <strong>Waarheid boven comfort:</strong> De volgende zaken zijn niet aantoonbaar op basis van huidig publiek onderzoek en worden daarom <em>niet</em> opgenomen als concrete contacten:
+  <br><br>
+  <strong>✗ Latijns-Amerika / Ecuador:</strong> Er is geen aantoonbare quantum-samenwerking tussen QDNL en Ecuador of Latijns-Amerika. Dit is een echte witte vlek — en daarmee een kans om als eerste die brug te bouwen.<br><br>
+  <strong>✗ QuantWare:</strong> QuantWare (net €152M Series B opgehaald) heeft een technisch profiel — co-founders Matthijs Rijlaarsdam en Alessandro Bruno richten zich op hardware, niet op health of internationale partnerships. Geen logisch raakvlak.<br><br>
+  <strong>✗ QuTech-namen:</strong> QuTech-onderzoekers zijn diep technisch en werken voor TU Delft/TNO. Zonder specifiek health-raakvlak is koud contact niet doeltreffend.
+</div>
+
+<!-- ACTIELIJST -->
+<h2 class="green">✅ Directe Actielijst — Doe dit deze week</h2>
+
+<ul class="checklist">
+  <li><div class="chk todo">□</div> <strong>Vandaag:</strong> Open LinkedIn → zoek "Ulrich Mans Quantum Delta NL" → stuur verbindingsverzoek met de voorgestelde tekst</li>
+  <li><div class="chk todo">□</div> <strong>Vandaag:</strong> Ga naar <code>quantumdelta.nl/quantum-forward-challenge</code> → vul contactformulier in voor informatie-sessie health challenge</li>
+  <li><div class="chk todo">□</div> <strong>Deze week:</strong> Zoek "Kate Hach" op LinkedIn → volg haar → reageer op een recente post → stuur DM</li>
+  <li><div class="chk todo">□</div> <strong>Bonus:</strong> Schrijf je in voor de QDNL-nieuwsbrief (<code>quantumdelta.nl</code>) — zo blijf je op de hoogte van nieuwe events en contactmomenten</li>
+  <li><div class="chk todo">□</div> <strong>Lange termijn:</strong> Noteer "Quantum Meets Amsterdam" in je agenda — dit is het jaarlijkse NL-quantum community-event, ideaal voor in-persoon eerste contact</li>
+</ul>
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <span>ForwardJuntos · Dominique Hermans · forwardjuntos.nl</span>
+  <span>Quantum Ecosysteem Scan · 15 mei 2026 · Constitutionele AI-methode · v1.0</span>
+</div>
+
+</body>
+</html>
